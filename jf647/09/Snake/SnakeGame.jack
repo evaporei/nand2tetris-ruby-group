@@ -48,7 +48,6 @@ class SnakeGame {
     // run the game
     method void run() {
 
-        var boolean broken;
         var boolean exit;
         var int key;
 
