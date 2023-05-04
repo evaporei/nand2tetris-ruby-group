@@ -24,7 +24,7 @@ class SnakeGrid {
 
         let game = Agame;
         let sizeX = Ax / 4;
-        let sizeY = Ay / 4;
+        let sizeY = (Ay-16) / 4;
 
         // initialize the grid
         do initGrid();
