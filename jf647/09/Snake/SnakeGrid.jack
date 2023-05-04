@@ -181,30 +181,6 @@ class SnakeGrid {
         do setOccupied(x, y, false);
         return;
     }
-
-    method void drawPaused() {
-
-        var String tString;
-
-        do Output.moveCursor(22, 12);
-        let tString = "[PAUSED] ";
-        do Output.printString(tString);
-        do tString.dispose();
-        return;
-
-    }
-    method void clearPaused() {
-
-        var String tString;
-
-        do Output.moveCursor(22, 12);
-        let tString = "         ";
-        do Output.printString(tString);
-        do tString.dispose();
-
-        return;
-
-    }
     method void drawDone() {
 
         var String tString;

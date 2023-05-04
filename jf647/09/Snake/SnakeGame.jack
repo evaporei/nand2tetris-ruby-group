@@ -12,9 +12,6 @@ class SnakeGame {
     // the level (1+ how many pellets have been eaten)
     field int level;
 
-    // whether the game is paused or not
-    field boolean paused;
-
     // the game cycle
     field int cycle;
 
@@ -30,7 +27,6 @@ class SnakeGame {
         // init game vars
         let score = 0;
         let level = 1;
-        let paused = false;
         let cycle = 0;
         let delay = 100;
 
@@ -70,34 +66,7 @@ class SnakeGame {
 
             do snake.rememberDir();
 
-            // handle the game being paused
-            if( paused ) {
-                let broken = false;
-                while(~broken) {
-                    let key = 0;
-                    while(~key) {
-                        let key = Keyboard.keyPressed();
-                    }
-                    if( key = 80 ) {
-                        // p
-                        let broken = true;
-                        let paused = false;
-                    }
-                    if( key = 81 ) {
-                        // q
-                        let broken = true;
-                        let exit = true;
-                    }
-                    do Sys.wait(delay);
-                }
-            }
-
-            // normal unpaused loop
             let key = Keyboard.keyPressed();
-            if( key = 80 ) {
-                // p
-                let paused = true;
-            }
             if( key = 81 ) {
                 // q
                 let exit = true;
@@ -209,9 +178,6 @@ class SnakeGame {
     }
     method int getLevel() {
         return level;
-    }
-    method int getPaused() {
-        return paused;
     }
 
 }
