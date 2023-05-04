@@ -182,40 +182,6 @@ class SnakeGrid {
         return;
     }
 
-    // draws the status line
-    // Level: 0___ [PAUSED] #__ Score: 0_______  x__ y__  Length: 0___
-    // 0           12       21  25               42  46   52
-    method void drawStatus() {
-
-        var Snake snake;
-        var String tString;
-
-        do Output.moveCursor(22, 0);
-        let tString = "Level: ";
-        do Output.printString(tString);
-        do tString.dispose();
-        do Output.printInt(game.getLevel());
-        do Output.moveCursor(22, 25);
-        let tString = "Score: ";
-        do Output.printString(tString);
-        do tString.dispose();
-        do Output.printInt(game.getScore());
-        do Output.moveCursor(22, 52);
-        let tString = "Length: ";
-        do Output.printString(tString);
-        do tString.dispose();
-        let snake = game.getSnake();
-        do Output.printInt(snake.getLength());
-        if(game.getPaused()) {
-            do drawPaused();
-        }
-        else {
-            do clearPaused();
-        }
-
-        return;
-
-    }
     method void drawPaused() {
 
         var String tString;

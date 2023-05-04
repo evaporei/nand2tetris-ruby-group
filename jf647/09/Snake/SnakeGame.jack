@@ -41,7 +41,6 @@ class SnakeGame {
         let snake = Snake.new(this, grid.sizeX() / 2, grid.sizeY() / 2, 10, 3);
 
         do grid.placeFood();
-        do grid.drawStatus();
 
         return this;
 
@@ -89,7 +88,6 @@ class SnakeGame {
                         let broken = true;
                         let exit = true;
                     }
-                    do grid.drawStatus();
                     do Sys.wait(delay);
                 }
             }
@@ -159,9 +157,8 @@ class SnakeGame {
             // needed, and clearing the old tail if not
             do snake.grow(cycle);
 
-            // redraw the food, status, delay and increment the cycle
+            // redraw the food, delay and increment the cycle
             do grid.drawFood();
-            do grid.drawStatus();
             do Sys.wait(delay);
             do nextCycle();
 
