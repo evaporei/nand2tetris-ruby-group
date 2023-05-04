@@ -3,7 +3,6 @@
 /** Random.jack -- A not so random PRNG. */
 
 class Random {
-
     static int seed;
 
     function void setSeed(int newSeed) {
@@ -34,5 +33,4 @@ class Random {
         }
         return ret;
     }
-
 }
