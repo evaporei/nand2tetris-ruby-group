@@ -1,110 +1,78 @@
 class SnakeGame {
-
-    // the Snake
     field Snake snake;
-
-    // the game grid
+    field int delay;
     field SnakeGrid grid;
-
-    // the game cycle
     field int cycle;
 
-    // how long to wait between cycles
-    field int delay;
-
-    // creates a new SnakeGame
     constructor SnakeGame new() {
-
-        // use the delay in the user pressing a key to seed our PRNG
         do Random.setSeed(RandSeed.getSeed());
 
-        // init game vars
         let cycle = 0;
         let delay = 100;
-
-        // create the grid
         let grid = SnakeGrid.new(512, 256);
-
-        // create the snake
         let snake = Snake.new(this, grid.sizeX() / 2, grid.sizeY() / 2);
 
         do grid.placeFood();
 
         return this;
-
     }
 
-    // disposes of a SnakeGame
     method void dispose() {
-
         do snake.dispose();
         do grid.dispose();
         do Memory.deAlloc(this);
-
         return;
-
     }
 
-    // run the game
     method void run() {
-
-        var boolean exit;
         var int key;
+        var boolean exit;
 
-        // loop until told to exit
         let exit = false;
-        while(~exit) {
 
+        while(~exit) {
             let key = Keyboard.keyPressed();
-            if( key = 81 ) {
+            if (key = 81) {
                 // q
                 let exit = true;
             }
             // left arrow, valid only if we weren't going right
-            if( key = 130 & ~(snake.getDir() = 4)) {
+            if (key = 130 & ~(snake.getDir() = 4)) {
                 do snake.setDir(3);
             }
             // up arrow, valid only if we weren't going down
-            if( key = 131 & ~(snake.getDir() = 2)) {
+            if (key = 131 & ~(snake.getDir() = 2)) {
                 do snake.setDir(1);
             }
             // right arrow, valid only if we weren't going left
-            if( key = 132 & ~(snake.getDir() = 3)) {
+            if (key = 132 & ~(snake.getDir() = 3)) {
                 do snake.setDir(4);
             }
             // down arrow, valid only if we weren't going up
-            if( key = 133 & ~(snake.getDir() = 1)) {
+            if (key = 133 & ~(snake.getDir() = 1)) {
                 do snake.setDir(2);
             }
 
-            // try to move one square in the current direction
-            if( ~ snake.tryMove() ) {
+            if (~snake.tryMove()) {
                 do grid.drawCrashed();
                 do Sys.halt();
             }
 
-            // have we eaten a food pellet?
-            if( grid.checkFood(snake.posX(), snake.posY()) ) {
+            if (grid.checkFood(snake.posX(), snake.posY())) {
                 do snake.eatFood();
                 do nextLevel();
                 do grid.placeFood();
             }
 
-            // make the snake grow
-            // takes care of drawing the new head, growing if
-            // needed, and clearing the old tail if not
             do snake.grow(cycle);
 
-            // redraw the food, delay and increment the cycle
             do grid.drawFood();
             do Sys.wait(delay);
             do nextCycle();
 
-            // check if the snake's history needs to be rewritten
             if( snake.checkRewriteHistory() ) {
                 let cycle = snake.getLength();
             }
-
         }
 
         do grid.drawDone();
@@ -114,9 +82,7 @@ class SnakeGame {
 
     }
 
-    // bumps the game to the next level
     method void nextLevel() {
-
         if( delay > 30 ) {
             let delay = delay - 5;
         }
@@ -124,18 +90,15 @@ class SnakeGame {
         return;
     }
 
-    // increment the cycle count by 1
     method void nextCycle() {
         let cycle = cycle + 1;
         return;
     }
 
-    // reader methods
     method SnakeGrid getGrid() {
         return grid;
     }
     method int getCycle() {
         return cycle;
     }
-
 }
