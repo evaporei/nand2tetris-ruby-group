@@ -147,12 +147,4 @@ class SnakeGrid {
     method int sizeY() {
         return sizeY;
     }
-
-    method int foodX() {
-        return foodX;
-    }
-
-    method int foodY() {
-        return foodY;
-    }
 }
