@@ -7,9 +7,6 @@
 
 class SnakeGrid {
 
-    // the game the snake is playing in
-    field SnakeGame game;
-
     // the size of the grid
     field int sizeX, sizeY;
 
@@ -20,9 +17,8 @@ class SnakeGrid {
     field Array grid;
 
     // creates a new SnakeGrid given a pixel size
-    constructor SnakeGrid new(SnakeGame Agame, int Ax, int Ay) {
+    constructor SnakeGrid new(int Ax, int Ay) {
 
-        let game = Agame;
         let sizeX = Ax / 4;
         let sizeY = (Ay-16) / 4;
 

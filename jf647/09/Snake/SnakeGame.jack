@@ -23,7 +23,7 @@ class SnakeGame {
         let delay = 100;
 
         // create the grid
-        let grid = SnakeGrid.new(this, 512, 256);
+        let grid = SnakeGrid.new(512, 256);
 
         // create the snake
         let snake = Snake.new(this, grid.sizeX() / 2, grid.sizeY() / 2, 10, 3);
