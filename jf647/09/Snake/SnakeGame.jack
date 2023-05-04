@@ -6,9 +6,6 @@ class SnakeGame {
     // the game grid
     field SnakeGrid grid;
 
-    // the score
-    field int score;
-
     // the level (1+ how many pellets have been eaten)
     field int level;
 
@@ -25,7 +22,6 @@ class SnakeGame {
         do Random.setSeed(RandSeed.getSeed());
 
         // init game vars
-        let score = 0;
         let level = 1;
         let cycle = 0;
         let delay = 100;
@@ -148,7 +144,6 @@ class SnakeGame {
     // bumps the game to the next level
     method void nextLevel() {
 
-        let score = score + (10 * level);
         let level = level + 1;
         if( delay > 30 ) {
             let delay = delay - 5;
@@ -172,9 +167,6 @@ class SnakeGame {
     }
     method int getCycle() {
         return cycle;
-    }
-    method int getScore() {
-        return score;
     }
     method int getLevel() {
         return level;
