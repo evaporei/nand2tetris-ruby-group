@@ -134,9 +134,6 @@ class SnakeGame {
     method SnakeGrid getGrid() {
         return grid;
     }
-    method Snake getSnake() {
-        return snake;
-    }
     method int getCycle() {
         return cycle;
     }
