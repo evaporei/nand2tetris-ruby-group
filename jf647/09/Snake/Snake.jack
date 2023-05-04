@@ -17,7 +17,7 @@ class Snake {
 
     // the direction the snake is/was moving
     // 0=none,1=up,2=down,3=left,4=right
-    field int dir, lastdir;
+    field int dir;
 
     // the history of the snake's movements
     field Array histX, histY;
@@ -37,7 +37,6 @@ class Snake {
 
         let togrow = 0;
         let dir = 4;
-        let lastdir = 4;
         let histSize = 512;
         let histX = Array.new(histSize);
         let histY = Array.new(histSize);
@@ -115,20 +114,9 @@ class Snake {
         return dir;
     }
 
-    // gets the snake's last direction
-    method int getLastDir() {
-        return lastdir;
-    }
-
     // sets the snake's direction
     method void setDir(int newdir) {
         let dir = newdir;
-        return;
-    }
-
-    // copies dir to lastdir
-    method void rememberDir() {
-        let lastdir = dir;
         return;
     }
 
