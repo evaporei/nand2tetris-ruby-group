@@ -125,9 +125,9 @@ class SnakeGame {
     }
 
     // increment the cycle count by 1
-    method int nextCycle() {
+    method void nextCycle() {
         let cycle = cycle + 1;
-        return cycle;
+        return;
     }
 
     // reader methods
