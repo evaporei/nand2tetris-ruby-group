@@ -54,36 +54,29 @@ class Snake {
         return this;
     }
 
-    // disposes of a Snake
     method void dispose() {
-
         do histX.dispose();
         do histY.dispose();
         do Memory.deAlloc(this);
         return;
-
     }
 
-    // checks if the snake's history needs to be rewritten
     method boolean checkRewriteHistory() {
-
-        if( game.getCycle() = histSize ) {
+        if (game.getCycle() = histSize) {
             do rewriteHistory();
             return true;
         }
 
         return false;
-
     }
 
-    // rewrites the snake's history
     method void rewriteHistory() {
-
         var int i, src, dst;
 
         let i = length;
         let dst = 0;
         let src = histSize - length;
+
         while( i > 0 ) {
             let histX[dst] = histX[src];
             let histY[dst] = histY[src];
@@ -93,70 +86,42 @@ class Snake {
         }
 
         return;
-
     }
 
-    // gets the snake's head position
-    method int posX() {
-        return posX;
-    }
-    method int posY() {
-        return posY;
-    }
-
-    // gets the snake's length
-    method int getLength() {
-        return length;
-    }
-
-    // gets the snake's direction
-    method int getDir() {
-        return dir;
-    }
-
-    // sets the snake's direction
-    method void setDir(int newdir) {
-        let dir = newdir;
-        return;
-    }
-
-    // checks if we can move one more space in the
-    // current direction
     method boolean tryMove() {
-
         var SnakeGrid grid;
         let grid = game.getGrid();
 
-        if( dir = 1 ) {
+        if (dir = 1) {
             // up
-            if( posY = 0 ) {
+            if(posY = 0) {
                 return false;
             }
             else {
                 let posY = posY - 1;
             }
         }
-        if( dir = 2 ) {
+        if (dir = 2) {
             // down
-            if( posY = grid.sizeY() ) {
+            if (posY = grid.sizeY()) {
                 return false;
             }
             else {
                 let posY = posY + 1;
             }
         }
-        if( dir = 3 ) {
+        if (dir = 3) {
             // left
-            if( posX = 0 ) {
+            if (posX = 0) {
                 return false;
             }
             else {
                 let posX = posX - 1;
             }
         }
-        if( dir = 4 ) {
+        if (dir = 4) {
             // right
-            if( posX = grid.sizeX() ) {
+            if (posX = grid.sizeX()) {
                 return false;
             }
             else {
@@ -164,23 +129,19 @@ class Snake {
             }
         }
 
-        // check if the snake has hit itself
-        if( grid.checkOccupied(posX, posY) ) {
+        if (grid.checkOccupied(posX, posY)) {
             return false;
         }
 
         return true;
-
     }
 
-    // makes the snake grow
     method void grow(int cycle) {
-
         // draw the new head
         do drawHead(cycle);
 
         // does the snake have some growing to do?
-        if( togrow > 0 ) {
+        if (togrow > 0) {
             let togrow = togrow - 1;
             let length = length + 1;
         }
@@ -190,26 +151,20 @@ class Snake {
         }
 
         return;
-
     }
 
-    // draws the current head of the snake
     method void drawHead(int cycle) {
-
         var SnakeGrid grid;
-
         let grid = game.getGrid();
+
         do grid.drawSnakeBit(posX, posY);
         let histX[cycle] = posX;
         let histY[cycle] = posY;
 
         return;
-
     }
 
-    // clears the current tail of the snake
     method void clearTail(int cycle) {
-
         var SnakeGrid grid;
         var int tailIndex, tailX, tailY;
 
@@ -220,13 +175,31 @@ class Snake {
         do grid.clearSnakeBit(tailX, tailY);
 
         return;
-
     }
 
-    // the snake eats a food pellet
     method void eatFood() {
         let togrow = togrow + growby;
         return;
     }
 
+    method int posX() {
+        return posX;
+    }
+
+    method int posY() {
+        return posY;
+    }
+
+    method int getLength() {
+        return length;
+    }
+
+    method int getDir() {
+        return dir;
+    }
+
+    method void setDir(int newdir) {
+        let dir = newdir;
+        return;
+    }
 }
