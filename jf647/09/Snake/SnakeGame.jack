@@ -26,7 +26,7 @@ class SnakeGame {
         let grid = SnakeGrid.new(512, 256);
 
         // create the snake
-        let snake = Snake.new(this, grid.sizeX() / 2, grid.sizeY() / 2, 10, 3);
+        let snake = Snake.new(this, grid.sizeX() / 2, grid.sizeY() / 2);
 
         do grid.placeFood();
 

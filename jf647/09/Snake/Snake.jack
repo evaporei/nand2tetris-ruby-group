@@ -1,13 +1,6 @@
 class Snake {
-
-    // the game the snake is playing in
-    field SnakeGame game;
-
     // the XY position of the snake's head
     field int posX, posY;
-
-    // the length of the snake
-    field int length;
 
     // how much the snake grows by when it eats a pellet
     field int growby;
@@ -15,35 +8,43 @@ class Snake {
     // how much the snake has left to grow
     field int togrow;
 
-    // the direction the snake is/was moving
-    // 0=none,1=up,2=down,3=left,4=right
-    field int dir;
+    // the length of the snake
+    field int length;
 
     // the history of the snake's movements
     field Array histX, histY;
     field int histSize;
 
+    // the direction the snake is/was moving
+    // 0=none,1=up,2=down,3=left,4=right
+    field int dir;
+
+    // the game the snake is playing in
+    field SnakeGame game;
+
     // creates a new Snake
     // args are X/Y position of head, length and how much to grow by
-    constructor Snake new(SnakeGame Agame, int Ax, int Ay, int Alen, int Agrowby) {
-
+    constructor Snake new(SnakeGame Agame, int Ax, int Ay) {
         var int i;
+        var SnakeGrid grid;
+
+        let dir = 4;
+        let length = 10;
+        let growby = 3;
+        let togrow = 0;
 
         let game = Agame;
-        let posX = Ax - Alen;
-        let posY = Ay;
-        let length = Alen;
-        let growby = Agrowby;
+        let grid = game.getGrid();
+        let histSize = grid.sizeX();
 
-        let togrow = 0;
-        let dir = 4;
-        let histSize = 512;
         let histX = Array.new(histSize);
         let histY = Array.new(histSize);
 
-        // draw the initial snake
+        let posX = Ax - length;
+        let posY = Ay;
+
         let i = 0;
-        while( i < length ) {
+        while (i < length) {
             let posX = posX + 1;
             do drawHead(game.getCycle());
             let i = i + 1;
@@ -51,7 +52,6 @@ class Snake {
         }
 
         return this;
-
     }
 
     // disposes of a Snake
