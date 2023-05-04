@@ -155,17 +155,6 @@ class SnakeGrid {
 
     }
 
-    // debug: puts the cycle, and current X/Y on the status line
-    method void debugPosition(int x, int y) {
-        do Output.moveCursor(22, 21);
-        do Output.printInt(game.getCycle());
-        do Output.moveCursor(22, 42);
-        do Output.printInt(x);
-        do Output.moveCursor(22, 46);
-        do Output.printInt(y);
-        return;
-    }
-
     // draws a block and marks that block as occupied
     method void drawSnakeBit(int x, int y) {
         do Screen.setColor(true);
